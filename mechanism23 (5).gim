@@ -1,0 +1,290 @@
+
+Ventana, ancho, alto, separador: 1552: 832: 241
+
+Geometry
+
+Modulo activo: 1: nuevo orden
+
+Rejilla
+Longitud ejes      : 20
+Nº divisiones ejes : 10
+Nº div 4ª circunf  : 6
+Nº div pto en línea: 10
+Coord esféricas    : False
+
+Mecanismo plano: True
+
+Puntos: 10
+
+Punto, masa, label: 0: 0 :P1: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 9.4173569679129: 7.84284925858227: 0
+Par y fijo : 2: R: False
+
+Punto, masa, label: 1: 0 :P2: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 0.0167000000000002: 4.3557: 0
+Par y fijo : 2: R: True
+
+Punto, masa, label: 2: 0 :P3: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 7.91007205322479: 10.8839168648603: 0.00346019388891559
+Par y fijo : 2: R: False
+
+Punto, masa, label: 3: 0 :P4: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: -1.9605: 8.23040000000001: 0
+Par y fijo : 2: R: True
+
+Punto, masa, label: 4: 0 :P5: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 2.8: 18.5: 0
+Par y fijo : 0: NO: True
+
+Punto, masa, label: 5: 0 :P6: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 8.00000000000001: 12: 0
+Par y fijo : 0: NO: True
+
+Punto, masa, label: 6: 0 :P7: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 7.9978678175698: 12.012827808362: 0
+Par y fijo : 0: NO: False
+
+Punto, masa, label: 7: 0 :P8: False: 1.53075794227797E-18: 0.025
+Ptos desliz  
+x, y, phi: 12.3846723125614: 7.90854980623819: 0
+Par y fijo : 0: NO: False
+
+Punto, masa, label: 8: 0 :P9: False: 1.53075794227797E-18: 0.025
+Ptos desliz  : 2: 0
+x, y, phi: 8.68550571415149: 9.31941756941706: 0
+Par y fijo : 0: NO: False
+
+Punto, masa, label: 9: 0 :P10: False: 1.53075794227797E-18: 0.025
+Ptos desliz  : 7: 6
+x, y, phi: 10.7331359395736: 9.45372110646368: 0
+Par y fijo : 0: NO: False
+
+Elementos: 5
+
+Elemento, embolo, disco, masa, densidad, abierto: 0: False: False: 0: 0: False
+Inercia: False: 0: 0: 0
+Label :E1: False: 0.0176776695296637: 0.0176776695296637
+Puntos  : 0: 1
+
+Elemento, embolo, disco, masa, densidad, abierto: 1: False: False: 0: 0: False
+Inercia: False: 0: 0: 0
+Label :E2: False: 0.0176776695296637: 0.0176776695296637
+Puntos  : 3: 2
+
+Elemento, embolo, disco, masa, densidad, abierto: 2: False: False: 0: 0: False
+Inercia: False: 0: 0: 0
+Label :E3: False: 0.0176776695296637: 0.0176776695296637
+Puntos  : 2: 0
+
+Elemento, embolo, disco, masa, densidad, abierto: 3: False: False: 0: 0: False
+Inercia: False: 0: 0: 0
+Label :E4: False: 0.0176776695296637: 0.0176776695296637
+Puntos  : 7: 6
+
+Elemento, embolo, disco, masa, densidad, abierto: 4: False: False: 0: 0: False
+Inercia: False: 0: 0: 0
+Label :E5: False: 0.0176776695296637: 0.0176776695296637
+Puntos  : 8: 9
+
+Visualización
+Desplazamiento x, y: -3.26983297680125: 0.905267338734667
+Giro phi, theta    : -90: 0
+Centro de giro     : 5.16512769432405: 9.80000000000001: 5.69734064745588E-65
+Dimensión y zoom   : 17.4: 12.7263017447453
+Grosores           : 0.2: 3: 1: 2
+
+Ajustes
+Marco y suelo    : 2: False: 5: 3: False: False
+Perspectiva      : False: Colores
+RGB Fondo        : 255: 255: 255
+RGB Borde        : 0: 0: 0
+Labels y valores : False: True: True: False: True: True: True: False: False: True: False
+Precisión gráfica: 3: Hay imagen: False
+Miniejes         : False
+Curvas y axoides : 1: True: False: 0.08: 1: True: False: 1: 0.5: 0.05
+
+Rodaduras: 0
+
+Rangos
+Accionamientos: 0
+
+Colores: 32
+RGB Elemen 1: 192: 192: 192
+RGB Elemen 2: 255: 228: 196
+RGB Émbolo 1: 64: 224: 208
+RGB Émbolo 2: 127: 255: 212
+RGB Par nulo: 0: 255: 127
+RGB Par fijo: 105: 105: 105
+RGB Par E1  : 135: 206: 235
+RGB Par E2  : 0: 191: 255
+RGB Par R1  : 238: 130: 238
+RGB Par R2  : 221: 160: 221
+RGB Par Ux1 : 70: 130: 180
+RGB Par Ux2 : 100: 149: 237
+RGB Par Uy1 : 152: 251: 152
+RGB Par Uy2 : 50: 205: 50
+RGB Par C   : 127: 255: 0
+RGB Par P   : 255: 215: 0
+RGB Labels: 0: 0: 128
+RGB Autogiros: 245: 222: 179
+RGB Masa: 184: 134: 11
+RGB Colisiones: 250: 128: 114
+RGB Actuadores: 219: 112: 147
+RGB Limites: 218: 165: 32
+RGB Rangos: 255: 182: 193
+RGB Motores: 0: 128: 128
+RGB Vels ini: 50: 205: 50
+RGB Eje pri: 128: 128: 128
+RGB Eje sec: 211: 211: 211
+RGB Pun pri: 255: 0: 0
+RGB Pun sec: 169: 169: 169
+RGB Ref lin: 30: 144: 255
+RGB Ref tex: 255: 20: 147
+RGB Suelo: 255: 218: 185
+
+Kinematics
+
+Movimiento calculado: True
+
+Coordenadas iniciales
+
+Punto 0: 9.50000000000001: 1.1
+Punto 1: 0.0167000000000002: 4.3557
+Punto 2: 7.10000000000001: 3.5
+Punto 3: -1.9605: 8.23040000000001
+Punto 4: 2.8: 18.5
+Punto 5: 8.00000000000001: 12
+Punto 6: 6.82246292095821: 4.597780116577
+Punto 7: 12.2907553886481: 2.1104262849314
+Punto 8: 8.33469741393199: 2.26530258606802
+Punto 9: 10.2320623425286: 3.0468608422825
+
+Puntos seleccionados   
+Elementos seleccionados
+
+Elemento de referencia, fijar, ver fijo, ver resultados fijo: -1: True: False: False
+Ori fija referencia: False: 0: 0: 0
+
+Resultados de puntos
+Trayectoria: True: True: 0: True: False
+Velocidad  : True: False: 90: 0.2
+Velo relati: False: False
+Aceleración: True: False: 3000: 0.2
+Componentes: False: False
+Acel relati: False: False: False
+Curvatura  : False: False: False
+
+Resultados de elementos
+Barrido: False: False
+Omega  : True: False: 9: 0.2: False: False
+Alpha  : True: False: 700: 0.2: False: False: False
+Cir, campo vel: False: False: False: False
+Polares: False: False: False: 2
+ICA, campo ace: False: False: False
+Circunf: False: False: False: 0
+Savary, Cardans, G: False: False: False
+
+Resultados de rodaduras
+Contacto     : False
+Tangente     : False
+Velocidades  : False
+Aceleraciones: False
+Trayectoria  : False
+
+Otras opciones
+Ver actuadores, base movimiento, elipsoides, motores, velinis: True: False: 1: True: False
+Ver componentes, pos vel ace actuadores: False: False: False: False
+
+Movimientos, auto, pos ini, jacobianos: 1: False: False: False
+
+Actuadores auxiliares
+Accionamientos: 0
+
+Accionamientos: 1
+
+Tipo, entidad, punto actuado y punto de referencia, hay función :MEC.Acc_R_fijo: 1: 0: -1: True
+ent, sal, var, con, lim, min, max, inc, nom: True: False: False: False: False: -0.330701415468656: 1.46000639707753: 0 :
+Función :MEC.Pol
+Coeficientes: -0.330701415468656: 6.28318530717959
+
+Trayectorias: 0
+
+Parametros: 25: 3: 1E-10: 0: 0: 0: True: False
+Pasos, tiempo de paso, objetivo: 342: 0.000833333333333333: 1200
+
+Posición: 131
+
+Colores: 39
+RGB Trayectoria: 30: 144: 255
+RGB Tray desliz: 0: 139: 139
+RGB Velocidad: 255: 0: 0
+RGB Veloc arrastre: 147: 112: 219
+RGB Veloc relativa: 255: 0: 255
+RGB Aceleración: 65: 105: 225
+RGB Acel tangencial: 148: 0: 211
+RGB Acel normal: 255: 140: 0
+RGB Acel arrastre: 60: 179: 113
+RGB Acel relativa: 127: 255: 0
+RGB Acel Coriolis: 0: 255: 255
+RGB Centro curvatura: 189: 183: 107
+RGB Cent curvat locus: 255: 105: 180
+RGB Barrido: 152: 251: 152
+RGB Omega: 255: 0: 0
+RGB Ome arrastre: 147: 112: 219
+RGB Ome relativa: 255: 0: 255
+RGB Alpha: 65: 105: 225
+RGB Alpha arrastre: 60: 179: 113
+RGB Alpha relativa: 127: 255: 0
+RGB Alpha Resal: 0: 255: 255
+RGB CIR: 0: 128: 0
+RGB Base: 138: 43: 226
+RGB Ruleta: 255: 69: 0
+RGB Tangente polar: 255: 105: 180
+RGB Polo aceleraciones: 255: 99: 71
+RGB Circunf inflexiones: 32: 178: 170
+RGB Circunf Bresse: 255: 165: 0
+RGB Envolvente: 135: 206: 235
+RGB Circunf retrocesos: 184: 134: 11
+RGB Rodadura: 255: 127: 80
+RGB Orient: 218: 112: 214
+RGB Acc vel: 255: 0: 0
+RGB Acc ace: 65: 105: 225
+RGB Sobre máximo: 153: 50: 204
+RGB Sobre mínimo: 65: 105: 225
+RGB Valor máximo: 255: 0: 255
+RGB Valor mínimo: 30: 144: 255
+RGB Valor medio: 255: 255: 0
+
+Query
+Entidad, Resultado, id: -1: -1: -1: False
+Puntos auxiliares
+Actuador: False
+Gráfico
+Resultado vectorial: False
+Mapa y split: False: False: False
+Límites y valores: 0: 0: 0: 0: 0
+Grosor y Marca: 1: True
+RGB Color: 255: 0: 0
+RGB Sobre máximo: 153: 50: 204
+RGB Sobre mínimo: 65: 105: 225
+RGB Valor máximo: 255: 0: 255
+RGB Valor mínimo: 30: 144: 255
+RGB Valor medio: 255: 255: 0
+
+Mapa nada, vel, ace, omega, alpha, curvatura, jacob act, jacob aux: True: False: False: False: False: False: False
+Marcas: False: False: False: False: 0: 0: 0
+
+Dynamics
+
+Escalas fuerzas, momentos, fuerzas distribuidas: 0: 0: 0
+
+Synthesis
+
+Modo y submodo: -1: -1

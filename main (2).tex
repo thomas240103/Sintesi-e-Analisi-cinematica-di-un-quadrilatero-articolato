@@ -1,0 +1,617 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{xcolor}%per le linee
+\usepackage{parskip}%per gli spazi
+\usepackage{makeidx}%pacchetto per l'indice
+\usepackage{biblatex}
+\addbibresource{ref.bib}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{sidecap}
+\usepackage{amsmath} %per formule matematiche
+\usepackage{listings} %per includere MATLAB
+\usepackage{array}
+\usepackage{siunitx}
+
+\renewcommand{\arraystretch}{1.35}
+\definecolor{matlabgreen}{rgb}{0,0.6,0}
+\definecolor{matlablilas}{rgb}{0.54,0,0.44}
+\lstset{
+    language=Matlab,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{matlabgreen},
+    stringstyle=\color{matlablilas},
+    numbers=left,
+    numberstyle=\tiny\color{black},
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ffff,
+    frame=single,
+    rulecolor=\color{black},
+    tabsize=2,
+    morekeywords={matlab2tikz},
+}
+
+
+\makeindex %crea l'indice
+
+\begin{document}
+
+Università Campus Bio-Medico di Roma \\
+Facoltà Dipartimentale di Ingegneria
+
+\vspace{20pt}
+
+\rule{\linewidth}{2pt}
+
+\begin{center}
+    Meccanica Applicata alle Macchine \\
+    A.A. 2023/2024 \\
+    \vspace{15pt}
+    {\bfseries\fontsize{14}{16}\selectfont
+    Sintesi cinematica e analisi
+    cinematica/statica di un meccanismo
+    basato su quadrilatero articolato
+    }
+    \mdseries
+    \\
+    \vspace{15pt}
+    Progetto con applicazione \\
+    Information Technology
+\end{center}
+
+\rule{\linewidth}{2pt}
+
+\begin{center}
+    \bfseries
+    Gruppo N. 28
+    \mdseries
+    \vspace{10pt}
+    \\
+    Alessandro Zampa \\
+    Thomas Kelly \\
+    \vspace{15pt}
+    DATA ASSEGNAZIONE: 17 novembre 2023 \\
+    DATA CONSEGNA: 14 gennaio 2024
+\end{center}
+
+\clearpage
+\tableofcontents % Inserisce l'indice
+\listoftables
+\listoffigures % Lista delle figure
+\clearpage
+
+\begin{center}
+    \bfseries
+    Introduzione
+    \mdseries
+\end{center}
+Vivendo in un’epoca in cui le persone trascorrono molte ore davanti al computer sia per motivi lavorativi, scolastici che di svago, è sorta la necessità di avere un unico dispositivo che possa adempiere all’esigenze di ogni utente. L’utilizzo del dispositivo deve essere efficace ed efficiente in termini di spazio e di confort per ognuna di queste attività. Essendo, il dispositivo, ormai parte integrante delle nostre vite, è fondamentale che ci permetta di assumere posture che non incidano negativamente sulla nostra salute fisica.
+
+\bfseries
+    Rischi
+\mdseries
+
+Nella letteratura scientifica troviamo numerosi studi che affermano che un utilizzo prolungato di un videoterminale può comportare l’insorgenza di disturbi muscoloscheletrici \cite{rischi} le cui localizzazioni più frequenti sono: muscoli trapezi, rachide, in particolare a livello lombare, spalle, polsi e mani. Questi disturbi sono da attribuire alla modalità di lavoro che richiede l’utilizzo di un videoterminale, quindi troviamo: il mantenimento di posture fisse per un periodo di tempo prolungato, l’assunzione di posture scorrette per errata scelta e/o disposizione degli arredi e lo svolgimento di compiti altamente ripetitivi quali l’utilizzo della tastiera e del mouse.
+
+\bfseries
+    Leggi e normative
+\mdseries 
+
+A tal proposito l’Unione Europea ha varato alcune leggi che forniscono le misure di prevenzione da adottare. Nel Titolo VII e Allegato XXXIV del D.Lgs. 81/08 e s.m.i. \cite{legge} si definiscono gli ambiti di applicazione di questo decreto e gli obblighi del datore di lavoro al fine di prevenire i rischi collegati all’utilizzo prolungato di videoterminali.
+\newpage
+
+\section{Definizione delle specifiche di sintesi ci\-ne\-ma\-ti\-ca del meccanismo
+}
+L'obiettivo di questo progetto è di ideare un videoterminale che potesse raggiungere tre configurazioni: la prima per far sì che si possa utilizzare una tastiera collegata al dispositivo, la seconda per la visualizzazione di contenuti e la terza per avere la possibilità di scrivere direttamente sul dispositivo. \\
+Le configurazioni dello schermo sono mirate a ottimizzare la postura di un utente con un’altezza media di circa 1.80m, posizione eretta con schiena e collo che rispettano le curve fisiologiche. Come schermo verrà utilizzato un iPad Apple con una larghezza di 18cm. Inizialmente sono state scattate le foto delle tre posizioni dello schermo, successivamente sono state riportate su \textbf{GeoGebra} affinché si potessero segnare i punti omologhi, rispetto alle misure reali, è stata utilizzata una scala 1:3 così da rendere più contenute le dimensioni.\\
+Per la prima configurazione si prende in considerazione il punto $M_1 = (x_1;y_1)$ con angolo $\alpha$ (Fig. \ref{config1}). La prima posizione ha un angolo di circa 155.5 gradi rispetto all'asse x, il quale permette all'utente di scrivere direttamente sullo schermo.\\
+Per la seconda configurazione si prende in considerazione il punto $M_2 = (x_2;y_2)$ con angolo $\beta$ (Fig. \ref{config2}). La seconda configurazione invece, è ideata per permettere una visualizzazione piacevole e confortevole. Si è quindi ipotizzato un angolo di 137.0 gradi rispetto all'asse x, così facendo si evita una posizione in\-na\-tu\-ra\-le del collo.\\
+Per la terza configurazione si prende in considerazione il punto $M_3 = (x_3;y_3)$ con angolo $\gamma$ (Fig. \ref{config3}). In conclusione, la terza struttura è con il dispositivo posto in verticale ad un’altezza massima di circa 55cm e con una distanza standard di circa 50-70cm tra gli occhi dell'utente e lo schermo del pc \cite{testcorretta}. Ciò permette quindi di visualizzare lo schermo all'interno di un campo visivo di circa 20 gradi, questa ampiezza risulta poco gravosa alla salute dell'occhio. Il dispositivo risulterà inclinato di circa 102.5 gradi rispetto all'asse x.\\
+Di seguito, in Tabella \ref{tabella1} verranno riassunte le quantità che entrano in gioco nel problema che si va ad affrontare, utilizzando gli angoli di rotazione che verranno utilizzati poi nella risoluzione della sintesi cinematica del meccanismo.
+
+\begin{table} [h!]
+    \centering
+    \begin{tabular}{c|c|c}
+    \hline
+         Configurazioni & Coordinate punto omologo (cm) & Angolo \\
+         \hline
+         1 & $M_1$=(6.82; 4.59) & 0° \\
+         \hline
+         2 &$ M_2$=(8,00; 12,00) & $\theta_{12} = 341,39°$ \\
+         \hline
+         3 & $M_3$=(2,80; 18,50) & $\theta_{13} = 306,97°$ \\
+         \hline
+    \end{tabular}
+    \caption{Coordinate e orientamento dei punti omologhi nelle tre configurazioni}
+    \label{tabella1}
+\end{table}
+
+\begin{figure} [h!]
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.8\linewidth, height=5cm]{Immagine 3 (1).jpg}
+        \caption{Prima configurazione}
+        \label{config1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.8\linewidth, height=5cm]{Immagine2.jpg}
+        \caption{Seconda configurazione}
+        \label{config2}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.8\linewidth, height=5cm]{immagine1.jpg}
+        \caption{Terza configurazione}
+        \label{config3}
+    \end{subfigure}
+    \caption{Configurazioni prese in considerazione}
+    \label{configurazioni}
+\end{figure}
+
+\section{Sintesi cinematica del meccanismo}
+\subsection{Definizione del problema}
+Viene qui effettuata la sintesi cinematica di un quadrilatero articolato per tre posizioni di biella
+assegnate utilizzando il metodo di Suh-Radcliffe. Per la risoluzione del problema si fissano le cerniere mobili $X_1$ e $Y_1$ per trovare le cerniere fisse $X_0$ e $Y_0$.
+Nel fissare le cerniere mobili vengono rispettati determinati criteri, come:
+\begin{enumerate}
+    \item Le cerniere mobili non vengono posizionate di fronte allo schermo
+    \item La lunghezza delle aste deve essere contenuta, lo scopo del meccanismo è quello di essere compatto %lo inseriamo qui?
+    \item Le cerniere mobile sono state fissate cercando di posizionarle il più vicino possibile allo schermo
+\end{enumerate}
+\subsection{Descrizione della procedura di sintesi}
+Nel risolvere la sintesi del meccanismo si utilizza, come già specificato, il metodo di Suh-Radcliffe.
+Per la risoluzione del metodo bisogna specificare quindi:
+\begin{itemize}
+    \item I tre punti omologhi per i quali passa lo schermo
+    \item L’angolo di rotazione tra la configurazione numero uno e la configurazione e l'angolo tra la configurazione numero uno e la configurazione numero tre
+\end{itemize}
+Entrambi già riassunti in Tabella \ref{tabella1}.
+
+Di seguito vengono calcolati $R_j$ e $S_j$:
+\begin{equation}
+    R_2 = x_2 - x_1 \cos(\theta_{12}) + y_1 \sin(\theta_{12})
+\end{equation}
+\begin{equation}
+     S_2 = y_2 - x_1 \sin(\theta_{12}) - y_1 \cos(\theta_{12})
+\end{equation}
+\begin{equation}
+    R_3 = x_3 - x_1 \cos(\theta_{13}) + y_1 \sin(\theta_{13}) 
+\end{equation}
+\begin{equation}
+    S_3 = y_3 - x_1 \sin(\theta_{13}) - y_1 \cos(\theta_{13})
+\end{equation}
+Al fine di ottenere la configurazione più vantaggiosa per il meccanismo, sono state calcolate circa duemila configurazioni possibili tra cerniere mobili e rispettive cerniere fisse, immagazzinando i risultati in una matrice. Le cerniere mobili sono state calcolate all'interno di un intervallo precedentemente definito, ottimale per gli obbietivi posti. Il quale comprende valori dell’ascissa $x$  da 7.1 cm a 12 cm (in scala 1:3), e dell’ordinata $y$ da 1 cm a 4.6 cm (in scala 1:3), incrementandole entrambe di volta in volta di 0.1 cm.  Successivamente sono state risolte le equazioni (\ref{eqsuh1}) e (\ref{eqsuh2}) per ogni punto all’interno dell’intervallo. 
+
+\begin{equation*}
+    eq_1 = X_1(R_2 cos(\theta_{12})+S2sin(\theta_{12})-X_0cos(\theta_{12})-Y_0sin(\theta_{12})+X_0)+
+\end{equation*}
+\begin{equation}
+    +Y_1(S_2cos(\theta_{12})-R_2sin(\theta_{12})+X_0sin(\theta_{12})-Y_0cos(\theta_{12})+Y_0)=
+    \label{eqsuh1}
+\end{equation}
+\begin{equation*}
+    =R_2X_0+S_2Y_0-0.5(R_2^2+S_2^2)
+\end{equation*}
+
+\begin{equation*}
+    eq_2 = X_1(R_3 cos(\theta_{13})+S3sin(\theta_{13})-X_0cos(\theta_{13})-Y_0sin(\theta_{13})+X_0)
+\end{equation*}
+\begin{equation}
+    +Y_1(S_3cos(\theta_{13})-R_3sin(\theta_{13})+X_0sin(\theta_{13})-Y_0cos(\theta_{13})+Y_0)=
+    \label{eqsuh2}
+\end{equation}
+\begin{equation*}
+    =R_3X_0+S_3Y_0-0.5(R_3^2+S_3^2)
+\end{equation*}
+Si calcola infine la lunghezza di ciascun’asta trovata e si inseriscono, all’interno della matrice creata in precedenza, i seguenti risultati:
+\begin{itemize}
+    \item Le coordinate delle cerniere fisse
+    \item Le coordinate delle cerniere mobili
+    \item La lunghezza dell’asta
+\end{itemize}
+
+Infine viene messa una condizione sulla lunghezza dell’asta per far si che il quadrilatero risulti più compatto.
+
+\subsection{Risultati}
+Tra i risultati ottenuti, riassunti in Tabella \ref{tab:my_label2} e in Tabella \ref{tab:my_label3}, le cerniere mobili sono state scelte in modo da rispettare le condizioni iniziali definite nel punto 2.2.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|c}
+    \hline
+         Cerniere fisse e mobili & Coordinate in scala 1:3 (cm) & Coordinate effettive (cm)\\
+    \hline
+         $X_0$ & (-1.96; 8.23) & (5.88; 24.69)\\
+    \hline
+         $Y_0$ & (0.02; 4.36) & (0.06; 13.08)\\
+    \hline
+         $X_1$ & (7.15; 3.50) & (21.45; 10.5)\\
+    \hline
+         $Y_1$ & (9.50; 1.10) & (28.5; 3.3)\\
+    \hline
+    \end{tabular}
+    \caption{Coordinate delle cerniere fisse e mobili trovate}
+    \label{tab:my_label2}
+\end{table}
+
+\begin{table} [h!]
+    \centering
+    \begin{tabular}{c|c|c}
+    \hline
+        Asta & Lunghezza, in scala 1:3 & Lunghezza effettiva \\
+    \hline
+         $\overline{X_0X_1}$ & 10.22 cm & 30.66 cm\\
+    \hline
+         $\overline{Y_0Y_1}$ & 10.03 cm & 30.09 cm\\
+    \hline
+         $\overline{X_0Y_0}$ & 4.36 cm & 13.08 cm\\
+    \hline
+         $\overline{X_1Y_1}$ & 3.39 cm & 10.18 cm\\
+    \end{tabular}
+    \caption{Lunghezza delle aste trovate}
+    \label{tab:my_label3}
+\end{table}
+
+In Fig. \ref{quadrl} verrà mostrato il quadrilatero calcolato.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.55\textwidth]{quadrilatero-fotor-2024010918312.png}
+    \caption{Quadrilatero trovato}
+    \label{quadrl}
+\end{figure}
+
+\newpage
+\section{Verifica della sintesi e analisi cinematica di posizione del meccanismo}
+\subsection{Passaggio per le tre configurazioni}
+In questo punto si procederà a valutare graficamente il passaggio del mec\-ca\-nis\-mo per i punti omologhi.
+Per fare ciò si utilizza il software \textbf{GIM}, grazie al quale è possibile creare una rappresentazione del meccanismo e del suo moto.
+Per descrivere la traiettoria del meccanismo è stato imposto un attuatore di rotazione assoluta sulla manovella $Y_0Y_1$.
+Come si può osservare in Fig.\ref{mecc} vi è un oggetto solidale alla biella, il quale rappresenta il tablet, rapportato in scala 1:3 così come le aste.
+\\
+\\
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=0.55\textwidth]{mecc-fotor-2024010918291.png}
+    \caption{Quadrilatero con oggetto solidale alla biella}
+    \label{mecc}
+\end{figure}
+\\
+\\
+Si nota come l’estremo superiore del tablet, passi per tutti i punti omologhi citati nella Tabella \ref{tabella1}, mostrato in Fig. \ref{3config}, rispettando anche l’inclinazione spe\-ci\-fi\-ca\-ta nel punto 1.
+\begin{figure} [h!]
+    \begin{subfigure}{0.57\textwidth}
+        \includegraphics[width=0.8\linewidth, height=4.5cm]{cinfig1-fotor-20240109184432.jpg}
+        \caption{Posizione 1}
+        \label{posizione1}
+    \end{subfigure}
+    \begin{subfigure}{0.57\textwidth}
+        \includegraphics[width=0.8\linewidth, height=4.5cm]{cinfug2-fotor-20240109184620.jpg}
+        \caption{Posizione 2}
+        \label{posizione2}
+    \end{subfigure}
+    \begin{subfigure}{0.57\textwidth}
+        \includegraphics[width=0.8\linewidth, height=4.5cm]{config3-fotor-2024010918483.jpg}
+        \caption{Posizione 3}
+        \label{posizione3}
+    \end{subfigure}
+    \caption{Passaggio del quadrilatero per i tre punti omologhi}
+    \label{3config}
+\end{figure}
+\newpage
+\subsection{Cir}
+
+Si vuole ora determinare il moto del Cir della biella rispetto al telaio. Procedendo per gradi, si identificano subito i Cir di immediata visualizzazione, ovvero quelli in corrispondenza delle cerniere, $P_{12} $ $P_{14}$ $P_{23}$ $P_{34}$, mostrate in Fig. \ref{grafo}.
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Cir.jpg}
+    \caption{Grafo}
+    \label{grafo}
+\end{figure}
+\newpage
+Sfruttando il Teorema di Aronhold-Kennedy, sarà possibile calcolare il Cir della biella rispetto al telaio.
+Si ricava dall'immagine sotto riportata che il Cir $P_{13}$ si troverà nell'intersezione tra la passante per i punti $X_0X_1$ e la retta passante per i punti $Y_0Y_1$.
+Grazie a \textbf{GIM} invece è possibile osservare il movimento, in Fig. \ref{traiettoria}, di $P_{13} $ durante il moto del meccanismo.
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=0.83\textwidth]{cir (1)-fotor-20240109182530.png}
+    \caption{Traiettoria del CIR}
+    \label{traiettoria}
+\end{figure}
+
+\subsection{Studio delle configurazioni limite}
+Per ricavare le configurazioni limite si parte dall'equazione di chiusura:
+\begin{equation}
+    \vec{r_1} +  \vec{r_3} + \vec{r_3} + \vec{r_4} = 0
+\end{equation}
+
+che in notazione polare si può riscrivere come:
+\begin{equation}
+    r_1e^{i\theta_1}+r_2e^{i\theta_2}+r_3e^{i\theta_3}+r_4e^{i\theta_4}=0
+\end{equation}
+Si applica quindi la formula di Eulero\footnote{$re^{i\theta}=r(cos(\theta)+isin(\theta))$}, la quale divide i vettori nella parte reale, equazione (\ref{eqreal}), e nella parte immaginaria, equazione (\ref{eqimagin}):
+\begin{equation}
+    r_1\cos(\theta_{1}) +   r_2\cos(\theta_{2}) + r_3\cos(\theta_{3}) -  r_4\cos(\theta_{4}) = 0
+    \label{eqreal}
+\end{equation}
+\begin{equation}
+r_1\sin(\theta_{1}) +  r_2\sin(\theta_{2}) + r_3\sin(\theta_{3}) -  r_4\sin(\theta_{4}) = 0
+\label{eqimagin}
+\end{equation}
+
+sono note $r_1$,  $r_2$, $r_3$, $r_4$, $\theta_{1}$ e $\theta_{4}$.
+\newpage
+In particolare, si studia la configurazione iniziale del quadrilatero, ruotata di 63.15° in senso antiorario intorno al punto D, così da semplificarne l'analisi. Sono quindi noti $\theta_{4}$, il quale è fisso (180°) e $\theta_{1}$ considerato variabile. Si ottengono quindi le seguenti equazioni:
+\begin{equation}
+r_2\cos(\theta_{2}) = - r_3\cos(\theta_{3})  - r_1\cos(\theta_{1}) + r_4
+\label{eqcosth2}
+\end{equation}
+\begin{equation}
+r_2\sin(\theta_{2}) = - r_3\sin(\theta_{3}) - r_1\sin(\theta_{1}) 
+\label{eqsinth2}
+\end{equation}
+elevando le equazioni al quadrato e sommandole si ottiene:
+\begin{equation}
+r_2^2 = \left(  - r_3\cos(\theta_{3})  - r_1\cos(\theta_{1}) + r_4 \right)^2 + \left( - r_3\sin(\theta_{3}) - r_1\sin(\theta_{1})  \right)^2
+\end{equation}
+se si svolge l'equazione si giunge ad un equazione non lineare che come incognita ha $\theta_{3}$. Si raccolgono, ora, a fattor comune i termini che moltiplicano $\sin(\theta_{3})$ e $\cos(\theta_{1})$, i quali si possono raggruppare come:
+\begin{equation}
+    \begin{cases}
+    A = 2r_1r_3\sin\theta_1 \\
+    B = 2r_1r_3\cos\theta_1-2r_4r_3 \\
+    C = r_1^2 + r_3^2 +  r_4^2 - r_2^2 - 2r_4r_1\cos(\theta_{1})
+    \end{cases}
+\end{equation}
+quindi si può scrivere l'equazione come:
+\begin{equation}
+    A\sin(\theta_{3}) + B\cos(\theta_{3}) + C = 0
+\end{equation}
+per passare da un equazione non lineare a lineare si inserisce una nuova incognita t:
+\begin{equation}
+    \begin{cases}
+    t=\tan\frac{\theta_3}{2} \\
+    \sin(\theta_{3}) = \frac{2t}{1 + t^2} \\
+    \cos(\theta_{3}) = \frac{1 -t^2}{1 + t^2}
+    \end{cases}
+\end{equation}
+si ottiene quindi:
+\begin{equation}
+    (C - B)t^2 + 2At + (C + B) = 0
+    \label{eqt}
+\end{equation}
+Le soluzioni ottenute dall'equazione (\ref{eqDelta}), la quale rappresenta il $\Delta$ dell' equazione (\ref{eqt}), indicano le posizione d'arresto del meccanismo in funzione di $\theta_1$.
+In particolare ci si pone come obiettivo quello di trovare $\theta_1$ affinché il discriminante risulti nullo, così da avere due soluzioni coincidenti. 
+\begin{equation}
+    \Delta = A^2 + B^2 -C^2 = 0
+    \label{eqDelta}
+\end{equation}
+Svolgendo l'equazione si trova che la condizione prima citata, che si verifica a $\theta_1 = 112\si{\degree}$, si trova al di fuori del ciclo di lavoro, il quale varia tra $\theta_1= -18\si{\degree}$ e $\theta_1 = 80\si{\degree}$.
+Si procede, ora, con l'analisi della velocità.
+Riprendendo le equazioni (\ref{eqcosth2}) e (\ref{eqsinth2}) e derivando $\theta$ una volta rispetto al tempo si ottiene:
+\begin{equation}
+    \begin{bmatrix}
+       -r_2\sin(\theta_2) & -r_3\sin(\theta_3) \\
+        r_2\cos(\theta_2) & r_3\cos(\theta_3) \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        w_2 \\
+        w_3 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        r_1w_1\sin(\theta_1) \\
+        -r_2w_2\sin(\theta_2)  \\
+    \end{bmatrix}
+    \label{matjac}
+\end{equation}
+la matrice di sinistra dell'equazione (\ref{matjac}) è detta matrice Jacobiana, grazie alla quale si riesce a ricavare quando si verificano le singolarità.
+Per fare ciò si studia quando il determinante della Jacobiana si annulla:
+\begin{equation}
+    det(J) = r_3r_2\sin(\theta_2 - \theta_3) = 0
+    \label{detJ}
+\end{equation}
+ciò si verifica quando:
+\begin{equation*}
+    \theta_2 = \theta_3
+\end{equation*}
+\begin{equation*}
+    \theta_2 = \theta_3 + 180\si{\degree}
+\end{equation*}
+Il meccanismo in foto $\ref{posizione3}$ è la configurazione più prossima ad una delle condizioni di singolarità. In quest'ultima gli angoli risultano: $\theta_2 = 66.7\si{\degree}$ e $\theta_3 = -98.4\si{\degree}$, rispettando così le condizioni sopra citate.
+
+
+\section{Analisi statica del meccanismo}
+\subsection{Definizione del problema}
+In questo punto si affronterà l’analisi statica del meccanismo trovato nel punto 2.
+Quindi si calcoleranno, a seguito di un carico assegnato sulla biella (forza o coppia), i carichi sui singoli componenti del meccanismo, ovvero le reazioni vincolari per tutti i membri e il carico di attuazione (forza o coppia) per il movente.
+Lo studio dell’analisi statica sarà condotto sulla prima configurazione (Fig. \ref{posizione1}), ovvero con lo schermo in orizzontale per la scrittura diretta.
+La forza che viene applicata è stata determinata per via sperimentale: come campione si è preso il peso di un iPad generico, è stata pesata una mano in posizione di scrittura di un uomo adulto ed è stato, inoltre, aggiunto un margine del 20\% in modo da considerare anche eventuali carichi maggiori.
+
+\subsection{Descrizione della procedura di analisi}
+Per la risoluzione si opta per l’utilizzo del metodo del free body o diagramma a corpo libero il quale si avvale del principio di disgregazione: “Se un intero sistema è in equilibrio, allora anche una qualsivoglia singola sottoparte deve essere in equilibrio, purché si tenga conto della sollecitazione che il resto del sistema esplica sulla sottoparte disgregata”.
+Per iniziare si calcolano le forze agenti sul membro 1, il bilanciere. Su quest’asta agiscono due forze, $\Vec{F_{41}}$ e $\vec{F_{21}}$, entrambe hanno la stessa retta d’azione, ossia l’asse del bilanciere, ma sono di verso opposto, come mostrato in Fig. \ref{bilanciere} e indicate nell’equazione (\ref{eqmembro1}).
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{bilancere_definitivo.jpg}
+    \caption{Forze impresse sul bilanciere, in scala 1:3}
+    \label{bilanciere}
+\end{figure}
+
+\begin{equation}
+    \Vec{F_{41}} + \vec{F_{21}} = 0
+    \label{eqmembro1}
+\end{equation}
+\newpage
+Successivamente si calcolano le forze agenti sul membro 2, la biella. Su quest’asta agiscono tre forze, $\Vec{F_{12}}$, $\Vec{F_{32}}$ e la forza applicata $\Vec{F}$. Di queste forze si conoscono: la direzione di $F_{12}$, la stessa di $\Vec{F_{21}}$ per principio di azione e reazione; direzione, modulo e verso di $\Vec{F}$ e il punto di applicazione di $\Vec{F_{32}}$. Si può procedere quindi con il metodo del free body, in Fig. \ref{freebody}, per la risoluzione della forza $\Vec{F_{32}}$ avendo tutte le informazioni che necessitano; si prolungano le direzioni delle forze $\Vec{F_{12}}$ e $\Vec{F}$ fino a farle intersecare in un punto P, e congiungiamo il punto di applicazione della forza $\Vec{F_{32}}$ con il punto P. Così facendo sono stati trovati modulo e verso della forza $\Vec{F_{12}}$ e della forza $\Vec{F_{32}}$, come mostrato in Fig. \ref{biella}, riportate nell’equazione (\ref{eqmembro2}).
+
+\begin{figure} [h!]
+\centering
+    \begin{subfigure}{0.35\textwidth}
+        \includegraphics[width=0.9\linewidth, height=6cm]{somma_vett.jpg}
+        \caption{Metodo del free body}
+        \label{freebody}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=0.8\linewidth, height=6cm]{biella_quella_vera.jpg}
+    \caption{Forze impresse sulla biella, in scala 1:3}
+    \label{biella}
+    \end{subfigure}
+    \caption{Calcolo delle forze sulla biella}
+\end{figure}
+
+\begin{equation}
+    \Vec{F_{12}} + \Vec{F_{32}} + \Vec{F} = 0
+    \label{eqmembro2}
+\end{equation}
+
+In conclusione, si calcolano le forze e i momenti agenti sul membro 3, la manovella. Su quest’asta agiscono due forze, $\Vec{F_{23}}$ e $\Vec{F_{43}}$ e un momento $\Vec{M}$. La forza $\Vec{F_{43}}$ ha direzione parallela alla forza $\Vec{F_{23}}$ ma con verso opposto, mentre il momento $\Vec{M}$ ruota in senso opposto alla rotazione impressa dalla coppia di forze che agiscono su questo membro come mostrato in Fig. \ref{manovella} e indicate nell’equazione (\ref{eqmembro3}).
+
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{manovella_definitiva.jpg}
+    \caption{Forze impresse sulla manovella, in scala 1:3}
+    \label{manovella}
+\end{figure}
+
+\begin{equation}
+\begin{cases}
+    \begin{aligned}
+        &\Vec{F_{23}} + \Vec{F_{43}} = 0 \\
+        &\Vec{M} + \Vec{F_{23}} \times \Vec{Y_0Y_1} = 0
+    \end{aligned}
+\end{cases}
+\label{eqmembro3}
+\end{equation}
+\newpage
+\subsection{Risultati}
+In conclusione possono essere calcolate le forze e il momento agenti sul meccanismo. Il modulo delle forze è stato calcolato attraverso l'utilizzo di una proporzione tra lunghezza del vettore in centimetri e la forza in Newton, infatti 1cm equivale a 1N. Il momento, che risulterà antiorario, è stato calcolato a partire dall'equazione (\ref{eqmembro3}). Per determinare il modulo è stato preso in considerazione l'angolo compreso tra la manovella e la forza $\Vec{F_{32}}$, il quale corrisponde ad $\alpha=38.7\si{\degree}$. Le forze utilizzate e i relativi moduli sono riassunti in Tabella \ref{analisi}.
+
+\begin{table} [h!]
+    \centering
+    \begin{tabular}{c|c}
+    \hline
+       Vettori & Modulo \\
+    \hline
+       $\Vec{F_{41}}$ & 1.3 N \\
+    \hline
+       $\vec{F_{21}}$ & 1.3 N \\
+    \hline
+       $\Vec{F_{12}}$ & 1.3 N \\
+    \hline
+       $\Vec{Fp}$ & 17.7 N \\
+    \hline
+       $\Vec{F_{32}}$ & 17.2 N \\
+    \hline
+       $\Vec{F_{23}}$ & 17.2 N \\
+    \hline
+       $\Vec{F_{43}}$ & 17.2 N \\
+    \hline
+       $\Vec{M}$ & 3.2 Nm \\
+    \hline
+    \end{tabular}
+    \caption{Forze e il relativo modulo usati durante l'analisi}
+    \label{analisi}
+\end{table}
+
+
+\clearpage
+\printbibliography
+
+\newpage
+\appendix
+\section{Estratto del decreto legislativo 81/2008}
+
+CAPO II - OBBLIGHI DEL DATORE DI LAVORO, DEI DIRIGENTI E DEI PREPOSTI\\
+Articolo 174 - Obblighi del datore di lavoro\\
+1. Il datore di lavoro, all’atto della valutazione del rischio di cui all’articolo 28, analizza i posti di lavoro con
+particolare riguardo:\\
+a) ai rischi per la vista e per gli occhi;\\
+b) ai problemi legati alla postura ed all’affaticamento fisico o mentale;\\
+c) alle condizioni ergonomiche e di igiene ambientale.\\
+2. Il datore di lavoro adotta le misure appropriate per ovviare ai rischi riscontrati in base alle valutazioni di cui al
+comma 1, tenendo conto della somma ovvero della combinazione della incidenza dei rischi riscontrati.\\
+3. Il datore di lavoro organizza e predispone i posti di lavoro di cui all’articolo 173, in conformità ai requisiti minimi di
+cui all’ALLEGATO XXXIV101.
+
+\section{Codice MATLAB}
+
+\begin{lstlisting}[language=Matlab]
+syms X0 Y0;
+%angoli di rotazione
+th12_gradi = 341.39 ;
+th12 = (pi/180) * th12_gradi;
+th13_gradi = 306.96;
+th13 = (pi/180) * th13_gradi;
+
+%primo punto omologo
+x1 = 6.82;
+y1 = 4.60;
+
+%secondo punto omologo
+x2 = 8.00;
+y2 = 12.00;
+
+%terzo punto omologo
+x3 = 2.80;
+y3 = 18.50;
+
+%determinazione di Rj e Sj
+R2 = x2-x1*cos(th12)+y1*sin(th12);
+S2 = y2-x1*sin(th12)-y1*cos(th12);
+
+R3 = x3-x1*cos(th13)+y1*sin(th13);
+S3 = y3-x1*sin(th13)-y1*cos(th13);
+
+%creazione della matrice
+z= zeros(50000,6);
+i=1;
+X0 = sym('X0');
+Y0 = sym('Y0');
+
+%inizio della cerniera mobile in x
+X1 = 7.10;
+  while(X1<12.00)
+  %inizio della cerniera mobile in y
+  Y1 = 4.6;
+    while(Y1>1)
+        
+    %equazioni di Suh-Radcliffe
+    eq1 = X1*(R2*cos(th12)+S2*sin(th12)-X0*cos(th12)+
+    -Y0*sin(th12)+X0)+Y1*(S2*cos(th12)-R2*sin(th12)+
+    +X0*sin(th12)-Y0*cos(th12)+Y0)==R2*X0+S2*Y0-0.5*((R2^2)+(S2^2));
+    
+    eq2 = X1*(R3*cos(th13)+S3*sin(th13)-X0*cos(th13)+
+    -Y0*sin(th13)+X0)+Y1*(S3*cos(th13)-R3*sin(th13)+
+    +X0*sin(th13)-Y0*cos(th13)+Y0)==R3*X0+S3*Y0-0.5*((R3^2)+(S3^2));
+        
+    equations = [eq1, eq2];
+    variables = [X0, Y0];
+    
+    sol = solve(equations, variables);
+                
+    %matrice di visualizzazione dei risultati
+    z(i,1)= sol.X0;
+    z(i,2)= sol.Y0;
+    z(i,3)= X1;
+    z(i,4)= Y1;
+    z(i,5)= (th12 * (180/pi));
+
+    %calcolo della lunghezza delle aste
+    d = sqrt((sol.X0-X1)^2 + (sol.Y0-Y1)^2);
+    z(i,6) = d;
+               
+        %condizione lunghezza asta se necessaria
+        if(d>10 && d<10.5)
+           z(i,:)
+        end          
+        i=i+1;
+        Y1 = Y1-0.1;
+    end
+    X1 = X1+0.1;
+  end
+
+\end{lstlisting}
+
+\end{document}
